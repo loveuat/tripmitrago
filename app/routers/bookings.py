@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models.bookings import Booking
-
+from app.services.telegram import send_telegram_notification
 router = APIRouter(
     prefix="/api/v1/bookings",
     tags=["Bookings"]
@@ -42,7 +42,8 @@ def create_booking(
     db.add(booking)
     db.commit()
     db.refresh(booking)
-
+      # Send Telegram notification
+    send_telegram_notification(booking)
     return {
         "message": "Booking created successfully",
         "booking_id": booking.id
