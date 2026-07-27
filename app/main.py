@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from sqlalchemy import text
 from sqladmin import Admin
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from app.database import engine
 from app.admin.auth import AdminAuth
@@ -14,18 +15,28 @@ from app.admin.views import (
     LocationAdmin,
     TripTypeAdmin,
     BookingAdmin,
+    ContactAdmin,
+    TestimonialAdmin,
+    PopularRouteAdmin
 )
 
 from app.routers.locations import router as locations_router
 from app.routers.trip_types import router as trip_types_router
 from app.routers.bookings import router as bookings_router
+from app.routers.contacts import router as contacts_router
+from app.routers.testimonials import router as testimonials_router
+from app.routers.popular_routes import router as popular_routes_router
 
 
 app = FastAPI(
     title="Trip Mitra GO",
     version="1.0.0"
 )
-
+app.mount(
+    "/uploads",
+    StaticFiles(directory="uploads"),
+    name="uploads",
+)
 
 # CORS
 app.add_middleware(
@@ -58,13 +69,17 @@ admin = Admin(
 admin.add_view(LocationAdmin)
 admin.add_view(TripTypeAdmin)
 admin.add_view(BookingAdmin)
-
+admin.add_view(ContactAdmin)
+admin.add_view(TestimonialAdmin)
+admin.add_view(PopularRouteAdmin)
 
 # API Routers
 app.include_router(locations_router)
 app.include_router(trip_types_router)
 app.include_router(bookings_router)
-
+app.include_router(contacts_router)
+app.include_router(testimonials_router)
+app.include_router(popular_routes_router)
 
 @app.get("/")
 def root():
