@@ -32,6 +32,9 @@ app = FastAPI(
     title="Trip Mitra GO",
     version="1.0.0"
 )
+UPLOAD_DIR = "uploads"
+
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 app.mount(
     "/uploads",
     StaticFiles(directory="uploads"),
