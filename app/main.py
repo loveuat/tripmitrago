@@ -47,6 +47,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "https://ridenova-chi.vercel.app",
+        "https://www.tripmitrago.in"
     ],
     allow_credentials=True,
     allow_methods=["*"],
