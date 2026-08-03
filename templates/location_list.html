@@ -1,0 +1,37 @@
+{% extends "sqladmin/list.html" %}
+
+{% block content %}
+  {{ super() }}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toolbar = document.querySelector(".col-auto .btn-group, .d-flex.gap-2, .btn-toolbar");
+      const btn = document.createElement("a");
+      btn.href = "#";
+      btn.className = "btn btn-primary ms-2";
+      btn.innerText = "Import";
+      btn.setAttribute("data-bs-toggle", "modal");
+      btn.setAttribute("data-bs-target", "#importModal");
+      if (toolbar) toolbar.appendChild(btn);
+    });
+  </script>
+
+  <div class="modal fade" id="importModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form method="post" action="/location-import" enctype="multipart/form-data">
+          <div class="modal-header">
+            <h5 class="modal-title">Import Locations CSV</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <input type="file" name="file" accept=".csv" class="form-control" required>
+            <small class="text-muted">Columns: name, type, state, district, sub_district, pincode, latitude, longitude, is_serviceable, priority</small>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Upload &amp; Import</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

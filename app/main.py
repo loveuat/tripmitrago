@@ -26,7 +26,7 @@ from app.routers.bookings import router as bookings_router
 from app.routers.contacts import router as contacts_router
 from app.routers.testimonials import router as testimonials_router
 from app.routers.popular_routes import router as popular_routes_router
-
+from app.routers.location_import import router as location_import_router
 
 app = FastAPI(
     title="Trip Mitra GO",
@@ -65,7 +65,8 @@ authentication_backend = AdminAuth(
 admin = Admin(
     app,
     engine,
-    authentication_backend=authentication_backend
+    authentication_backend=authentication_backend,
+    templates_dir="templates"
 )
 
 
@@ -84,7 +85,7 @@ app.include_router(bookings_router)
 app.include_router(contacts_router)
 app.include_router(testimonials_router)
 app.include_router(popular_routes_router)
-
+app.include_router(location_import_router)
 @app.get("/")
 def root():
     return {

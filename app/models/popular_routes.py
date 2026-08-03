@@ -18,14 +18,28 @@ class PopularRoute(Base):
         nullable=True
     )
 
+    # English
     from_city = Column(
         String(100),
         nullable=False
     )
 
+    # Hindi
+    from_city_hi = Column(
+        String(100),
+        nullable=True
+    )
+
+    # English
     to_city = Column(
         String(100),
         nullable=False
+    )
+
+    # Hindi
+    to_city_hi = Column(
+        String(100),
+        nullable=True
     )
 
     price = Column(
@@ -33,14 +47,28 @@ class PopularRoute(Base):
         nullable=False
     )
 
+    # English
     distance = Column(
         String(50),
         nullable=False
     )
 
+    # Hindi
+    distance_hi = Column(
+        String(50),
+        nullable=True
+    )
+
+    # English
     trip_time = Column(
         String(50),
         nullable=False
+    )
+
+    # Hindi
+    trip_time_hi = Column(
+        String(50),
+        nullable=True
     )
 
     created_at = Column(

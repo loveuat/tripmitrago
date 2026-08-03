@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -9,17 +9,16 @@ router = APIRouter(
     prefix="/api/v1/testimonials",
     tags=["Testimonials"]
 )
-
-
-@router.get(
-    "",
-    response_model=list[TestimonialResponse]
-)
+@router.get("", response_model=list[TestimonialResponse])
 def get_testimonials(
-    db: Session = Depends(get_db)
+    lang: str = Query("en"),
+    db: Session = Depends(get_db),
 ):
-    return (
+
+    testimonials = (
         db.query(Testimonial)
         .order_by(Testimonial.created_at.desc())
         .all()
     )
+
+    return testimonials

@@ -9,6 +9,7 @@ from app.models.popular_routes import PopularRoute
 
 
 class LocationAdmin(ModelView, model=Location):
+    list_template = "location_list.html"  
     column_list = "__all__"
 
 
