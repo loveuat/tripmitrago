@@ -9,8 +9,15 @@ from app.models.popular_routes import PopularRoute
 
 
 class LocationAdmin(ModelView, model=Location):
-    list_template = "location_list.html"  
+    list_template = "location_list.html"
     column_list = "__all__"
+    column_searchable_list = [
+        Location.name,
+        Location.name_hi,
+        Location.district,
+        Location.sub_district,
+        Location.pincode,
+    ]
 
 
 class TripTypeAdmin(ModelView, model=TripType):
