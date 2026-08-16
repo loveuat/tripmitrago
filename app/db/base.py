@@ -6,3 +6,4 @@ from app.models.bookings import Booking
 from app.models.contacts import Contact
 from app.models.testimonials import Testimonial
 from app.models.popular_routes import PopularRoute
+from app.models.area_banner import AreaBanner

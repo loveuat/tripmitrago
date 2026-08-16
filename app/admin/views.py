@@ -6,7 +6,7 @@ from app.models.bookings import Booking
 from app.models.contacts import Contact
 from app.models.testimonials import Testimonial
 from app.models.popular_routes import PopularRoute
-
+from app.models.area_banner import AreaBanner
 
 class LocationAdmin(ModelView, model=Location):
     list_template = "location_list.html"
@@ -74,4 +74,26 @@ class PopularRouteAdmin(
     column_searchable_list = [
         PopularRoute.from_city,
         PopularRoute.to_city,
+    ]
+
+class AreaBannerAdmin(ModelView, model=AreaBanner):
+    name = "Area Banner"
+    name_plural = "Area Banners (District/Tehsil)"
+    column_list = [
+        AreaBanner.id,
+        AreaBanner.level,
+        AreaBanner.name,
+        AreaBanner.slug,
+        AreaBanner.district_slug,
+        AreaBanner.state,
+        AreaBanner.banner_image,
+    ]
+    column_searchable_list = [AreaBanner.name, AreaBanner.slug]
+    form_columns = [
+        AreaBanner.level,
+        AreaBanner.name,
+        AreaBanner.slug,
+        AreaBanner.district_slug,
+        AreaBanner.state,
+        AreaBanner.banner_image,
     ]

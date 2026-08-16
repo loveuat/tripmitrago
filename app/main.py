@@ -17,7 +17,8 @@ from app.admin.views import (
     BookingAdmin,
     ContactAdmin,
     TestimonialAdmin,
-    PopularRouteAdmin
+    PopularRouteAdmin,
+    AreaBannerAdmin
 )
 
 from app.routers.locations import router as locations_router
@@ -27,6 +28,7 @@ from app.routers.contacts import router as contacts_router
 from app.routers.testimonials import router as testimonials_router
 from app.routers.popular_routes import router as popular_routes_router
 from app.routers.location_import import router as location_import_router
+from app.routers.areas import router as areas_router
 
 app = FastAPI(
     title="Trip Mitra GO",
@@ -77,6 +79,7 @@ admin.add_view(BookingAdmin)
 admin.add_view(ContactAdmin)
 admin.add_view(TestimonialAdmin)
 admin.add_view(PopularRouteAdmin)
+admin.add_view(AreaBannerAdmin)
 
 # API Routers
 app.include_router(locations_router)
@@ -86,6 +89,7 @@ app.include_router(contacts_router)
 app.include_router(testimonials_router)
 app.include_router(popular_routes_router)
 app.include_router(location_import_router)
+app.include_router(areas_router)
 @app.get("/")
 def root():
     return {
