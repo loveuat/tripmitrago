@@ -95,9 +95,9 @@ def sitemap_routes(db: Session = Depends(get_db)):
     rows = db.query(PopularRoute).all()
     result = []
     for r in rows:
-        if not r.from_location or not r.to_location:
+        if not r.from_city or not r.to_city:
             continue
-        slug = f"{slugify(r.from_location)}-to-{slugify(r.to_location)}"
+        slug = f"{slugify(r.from_city)}-to-{slugify(r.to_city)}"
         result.append(
             RouteSitemapEntry(
                 slug=slug,
