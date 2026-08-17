@@ -29,6 +29,7 @@ from app.routers.testimonials import router as testimonials_router
 from app.routers.popular_routes import router as popular_routes_router
 from app.routers.location_import import router as location_import_router
 from app.routers.areas import router as areas_router
+from app.routers.sitemap import router as sitemap_router
 
 app = FastAPI(
     title="Trip Mitra GO",
@@ -90,6 +91,7 @@ app.include_router(testimonials_router)
 app.include_router(popular_routes_router)
 app.include_router(location_import_router)
 app.include_router(areas_router)
+app.include_router(sitemap_router)
 @app.get("/")
 def root():
     return {
