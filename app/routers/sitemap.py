@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 from app.database import get_db
 from app.models.location import Location
-from app.models.popular_route import PopularRoute
+from app.models.popular_routes import PopularRoute
 router = APIRouter(prefix="/api/v1/sitemap", tags=["Sitemap"])
 
 
